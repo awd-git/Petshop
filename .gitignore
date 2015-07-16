@@ -1,0 +1,5 @@
+vendor
+animals.sqlite
+composer.lock
+*.pseudo
+*.pdf

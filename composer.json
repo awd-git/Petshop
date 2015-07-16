@@ -1,0 +1,21 @@
+{
+  "name": "root/catsdogs",
+  "description": "Dog and Cats Programming Example",
+  "require": {
+    "php": "^5.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.7"
+  },
+  "authors": [
+    {
+      "name": "Adrian Arnett",
+      "email": "aw@adrianworlddesign.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Animals\\": "app/"
+    }
+  }
+}

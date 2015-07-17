@@ -99,7 +99,7 @@ class AnimalAbstractTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \Exception
-     * @expectedExceptionMessage var $word is not valid
+     * @expectedExceptionMessage arg $word is not valid
      */
     public function testExceptionSpeakIsEmpty() {
         $stub = self::$stub;
@@ -126,6 +126,31 @@ class AnimalAbstractTest extends \PHPUnit_Framework_TestCase
         $stub = self::$stub;
 
         $stub->setAge(-10);
+    }
+
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage arg $favoriteFood is not valid
+     */
+    public function testExceptionFavoriteFoodNotString() {
+        $stub = self::$stub;
+
+        $stub->setFavoriteFood(true);
+    }
+
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage arg $favoriteFood is too long
+     */
+    public function testExceptionFavoriteFoodTooLong() {
+        $stub = self::$stub;
+
+        $string = 'Lasagne';
+        while(strlen($string) <= 33 ) {
+            $string .= $string;
+        }
+
+        $stub->setFavoriteFood($string);
     }
 
     /**

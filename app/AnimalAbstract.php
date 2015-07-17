@@ -53,7 +53,7 @@ class AnimalAbstract
     public function setName($name)
     {
         $this->name = $name;
-        if ( strlen($name) > 0 ) {
+        if (strlen($name) > 0) {
             $this->names[] = $this->name;
         } else {
             trigger_error('No name has been given', E_USER_WARNING);
@@ -135,7 +135,7 @@ class AnimalAbstract
     public function speak($word = '')
     {
         if (!is_string($word) || empty($word)) {
-            throw new \Exception('var $word is not valid');
+            throw new \Exception('arg $word is not valid');
         }
 
         // this would be an actual STDOUT but it cannot be unit tested
@@ -156,7 +156,13 @@ class AnimalAbstract
      */
     public function setFavoriteFood($favoriteFood)
     {
-        $this->favoriteFood = $favoriteFood;
+        if (strlen($favoriteFood) > 0 && !is_string($favoriteFood)) {
+            throw new \Exception('arg $favoriteFood is not valid');
+        } elseif (strlen($favoriteFood) > 32) {
+            throw new \Exception('arg $favoriteFood is too long');
+        }
+
+        $this->favoriteFood = (string) $favoriteFood;
         return $this;
     }
 

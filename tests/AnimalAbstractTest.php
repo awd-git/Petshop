@@ -87,6 +87,47 @@ class AnimalAbstractTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testSpeakSomething() {
+        $stub = self::$stub;
+
+        $string = 'something';
+        $this->expectOutputString($string);
+
+        $stub->speak($string);
+    }
+
+
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage var $word is not valid
+     */
+    public function testExceptionSpeakIsEmpty() {
+        $stub = self::$stub;
+
+        $stub->speak('');
+
+    }
+
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage The animal's age must be an integer
+     */
+    public function testExceptionAgeNotInteger() {
+        $stub = self::$stub;
+
+        $stub->setAge('one');
+    }
+
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage The animal's age must be a positive value
+     */
+    public function testExceptionAgeNotPositiv() {
+        $stub = self::$stub;
+
+        $stub->setAge(-10);
+    }
+
     /**
      * @expectedException \PHPUnit_Framework_Error_Warning
      */
